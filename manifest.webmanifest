@@ -1,0 +1,17 @@
+{
+  "id": "/",
+  "name": "ADHD Ease — Everyday ADHD Support",
+  "short_name": "ADHD Ease",
+  "description": "A practical everyday system for planning, starting tasks, and tracking progress.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#FAFAFA",
+  "theme_color": "#A78BFA",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
