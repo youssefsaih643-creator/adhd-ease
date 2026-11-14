@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#A78BFA">
+  <meta name="description" content="Install ADHD Ease on your phone for quick, easy access to your everyday productivity system.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+  <link rel="icon" type="image/png" href="/icons/icon-192.png">
+  <title>Install ADHD Ease</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--lav:#A78BFA;--lav-dark:#7657CF;--ink:#1F1F29;--muted:#716B7B;--bg:#FAFAFA;--line:#EAE4F4;--pale:#F4EFFF;--sage:#A3B18A}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(circle at 85% 10%,#F0EAFE 0,transparent 32%),var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif;min-height:100vh;display:flex;flex-direction:column}
+    .wrap{width:min(100% - 36px,760px);margin:auto;padding:30px 0 42px}
+    header{display:flex;align-items:center;gap:13px;margin-bottom:38px}
+    .logo{width:58px;height:58px;border-radius:17px;object-fit:cover;box-shadow:0 8px 22px #A78BFA40}
+    .brand{font:700 30px/1 'Bodoni Moda',Georgia,serif}
+    .subbrand{color:var(--muted);font:400 15px 'Cormorant Garamond',Georgia,serif;margin-top:5px}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:28px;padding:clamp(25px,6vw,48px);box-shadow:0 18px 55px #5D438A12;text-align:center}
+    .eyebrow{font:700 11px Inter,sans-serif;letter-spacing:.17em;text-transform:uppercase;color:var(--lav-dark)}
+    h1{font:600 clamp(37px,8vw,58px)/1.06 'Bodoni Moda',Georgia,serif;margin:15px auto 12px;max-width:620px}
+    .lead{font:500 23px/1.25 'Cormorant Garamond',Georgia,serif;color:var(--lav-dark);margin:0 auto 25px;max-width:510px}
+    .app-icon{width:112px;height:112px;object-fit:cover;border-radius:27px;margin:4px auto 25px;display:block;box-shadow:0 12px 30px #A78BFA35}
+    .desc{font-size:15px;line-height:1.75;color:var(--muted);max-width:520px;margin:0 auto 27px}
+    .install{border:0;border-radius:999px;padding:16px 30px;background:var(--sage);color:#182018;font:700 15px Inter,sans-serif;box-shadow:0 8px 20px #A3B18A55;cursor:pointer;min-width:min(100%,270px)}
+    .install:disabled{opacity:.65;cursor:default}
+    .open{display:inline-block;margin:17px 0 0;color:var(--lav-dark);font-size:14px;text-decoration:underline;text-underline-offset:4px}
+    .status{margin:20px auto 0;padding:14px 16px;border-radius:15px;background:#F7F4FC;border:1px solid var(--line);color:#514A60;font-size:13px;line-height:1.6;text-align:left;max-width:540px}
+    .status[hidden],.steps[hidden]{display:none}
+    .steps{margin:22px auto 0;max-width:540px;text-align:left;background:#FBFAFD;border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+    .steps h2{font:600 22px 'Cormorant Garamond',Georgia,serif;margin:0 0 10px}
+    .steps ol{padding-left:21px;margin:0;color:#5F5969;font-size:14px;line-height:1.8}
+    .steps li+li{margin-top:5px}
+    footer{text-align:center;color:#928B9B;font-size:12px;margin-top:23px}
+    @media(max-width:480px){.wrap{width:min(100% - 24px,760px);padding-top:22px}.panel{border-radius:23px;padding:27px 19px}.brand{font-size:27px}.app-icon{width:100px;height:100px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <img class="logo" src="/icons/icon-192.png" alt="ADHD Ease app icon">
+      <div><div class="brand">ADHD Ease</div><div class="subbrand">Your everyday productivity system</div></div>
+    </header>
+    <section class="panel">
+      <div class="eyebrow">A calmer way to begin</div>
+      <h1>Your daily reset, one step at a time.</h1>
+      <p class="lead">Make ADHD Ease part of your everyday routine.</p>
+      <img class="app-icon" src="/icons/icon-512.png" alt="ADHD Ease app icon">
+      <p class="desc">Install ADHD Ease on your phone for quick access to your planner, 5-Step System, guided audio and progress tools — all in one place.</p>
+      <button class="install" id="installBtn" type="button">Install ADHD Ease</button>
+      <div><a class="open" href="/">Already installed? Open ADHD Ease</a></div>
+      <div class="status" id="status" role="status" aria-live="polite" hidden></div>
+      <div class="steps" id="steps" hidden>
+        <h2 id="stepsTitle">Install from your browser</h2>
+        <ol id="stepsList"></ol>
+      </div>
+    </section>
+    <footer>ADHD Ease · Small steps create big momentum.</footer>
+  </main>
+<script>
+(() => {
+  const btn = document.getElementById('installBtn');
+  const status = document.getElementById('status');
+  const steps = document.getElementById('steps');
+  const stepsTitle = document.getElementById('stepsTitle');
+  const stepsList = document.getElementById('stepsList');
+  let installEvent = null;
+
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true;
+
+  function showSteps(title, items, message) {
+    status.hidden = false;
+    status.textContent = message;
+    stepsTitle.textContent = title;
+    stepsList.replaceChildren(...items.map(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      return li;
+    }));
+    steps.hidden = false;
+  }
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    });
+  }
+
+  window.addEventListener('beforeinstallprompt', event => {
+    event.preventDefault();
+    installEvent = event;
+    btn.disabled = false;
+    btn.textContent = 'Install ADHD Ease';
+    status.hidden = true;
+    steps.hidden = true;
+  });
+
+  window.addEventListener('appinstalled', () => {
+    installEvent = null;
+    btn.disabled = true;
+    btn.textContent = 'ADHD Ease is installed';
+    showSteps('You’re all set', ['Open ADHD Ease from your phone’s home screen.'], 'ADHD Ease has been installed successfully.');
+  });
+
+  if (isStandalone) {
+    btn.disabled = true;
+    btn.textContent = 'ADHD Ease is installed';
+    status.hidden = false;
+    status.textContent = 'ADHD Ease is already installed on this device.';
+  } else if (isIOS) {
+    showSteps('Install on iPhone or iPad', [
+      'Open this page in Safari.',
+      'Tap the Share button.',
+      'Choose “Add to Home Screen”.',
+      'Tap “Add” to finish.'
+    ], 'On iPhone and iPad, installation is completed from Safari’s Share menu.');
+  }
+
+  btn.addEventListener('click', async () => {
+    if (isStandalone) return;
+    if (installEvent) {
+      installEvent.prompt();
+      const choice = await installEvent.userChoice;
+      if (choice && choice.outcome === 'accepted') {
+        btn.textContent = 'Installing ADHD Ease…';
+        status.hidden = false;
+        status.textContent = 'Follow the confirmation on your device to finish installation.';
+      } else {
+        status.hidden = false;
+        status.textContent = 'No problem. You can install ADHD Ease whenever you’re ready.';
+      }
+      installEvent = null;
+      return;
+    }
+
+    if (isIOS) {
+      showSteps('Install on iPhone or iPad', [
+        'Open this page in Safari.',
+        'Tap the Share button.',
+        'Choose “Add to Home Screen”.',
+        'Tap “Add” to finish.'
+      ], 'Use Safari’s Share menu to add ADHD Ease to your Home Screen.');
+    } else {
+      showSteps('Install from Android browser', [
+        'Open this page in Google Chrome.',
+        'Tap the three-dot menu in the top-right corner.',
+        'Choose “Install app” or “Add to Home screen” if shown.',
+        'Confirm the installation.'
+      ], 'Your browser has not offered its automatic install prompt yet. Use the browser menu if the install option is available.');
+    }
+  });
+})();
+</script>
+</body>
+</html>

@@ -2,6 +2,7 @@ const CACHE_NAME = 'adhd-ease-shell-v1';
 const APP_SHELL = [
   '/',
   '/index.html',
+  '/install.html',
   '/supabase.js',
   '/manifest.webmanifest',
   '/icons/icon-192.png',
