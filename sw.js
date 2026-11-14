@@ -1,4 +1,4 @@
-const CACHE_NAME = 'adhd-ease-shell-v1';
+const CACHE_NAME = 'adhd-ease-shell-v2';
 const APP_SHELL = [
   '/',
   '/index.html',
@@ -21,7 +21,11 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil((async () => {
     const keys = await caches.keys();
-    await Promise.all(keys.filter((key) => key.startsWith('adhd-ease-shell-') && key !== CACHE_NAME).map((key) => caches.delete(key)));
+    await Promise.all(
+      keys
+        .filter((key) => key.startsWith('adhd-ease-shell-') && key !== CACHE_NAME)
+        .map((key) => caches.delete(key))
+    );
     await self.clients.claim();
   })());
 });
@@ -30,36 +34,44 @@ self.addEventListener('fetch', (event) => {
   const request = event.request;
   const url = new URL(request.url);
 
-  // Never cache authentication, database, or other cross-origin requests.
+  // Never cache Supabase/API requests, other origins, or non-GET requests.
   if (url.origin !== self.location.origin || request.method !== 'GET') return;
 
-  // Keep the app HTML fresh; use the cached shell only if the network is unavailable.
+  // Always try the latest HTML first. Use the cached app shell only when offline.
   if (request.mode === 'navigate') {
     event.respondWith((async () => {
       try {
         const response = await fetch(request);
         if (response && response.ok) {
           const cache = await caches.open(CACHE_NAME);
-          cache.put('/', response.clone());
+          cache.put(request, response.clone());
+          if (url.pathname === '/' || url.pathname === '/index.html') {
+            cache.put('/', response.clone());
+          }
         }
         return response;
-      } catch (error) {
-        return (await caches.match('/')) || (await caches.match('/index.html'));
+      } catch {
+        const cached = await caches.match(request) ||
+          (url.pathname === '/install' ? await caches.match('/install.html') : null) ||
+          await caches.match('/') ||
+          await caches.match('/index.html');
+        return cached || Response.error();
       }
     })());
     return;
   }
 
-  // Cache same-origin app files, while refreshing them when online.
+  // For same-origin static files, prefer the network so deployments update promptly.
   event.respondWith((async () => {
-    const cached = await caches.match(request);
-    const network = fetch(request).then((response) => {
+    try {
+      const response = await fetch(request);
       if (response && response.ok) {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
+        const cache = await caches.open(CACHE_NAME);
+        cache.put(request, response.clone());
       }
       return response;
-    }).catch(() => cached);
-    return cached || network;
+    } catch {
+      return (await caches.match(request)) || Response.error();
+    }
   })());
 });
