@@ -507,4 +507,16 @@ askwipe(){wipeAsk=true;render(true)},wipe(){S={tasks:[],cur:null,log:[],name:'',
 document.addEventListener('click',e=>{const b=e.target.closest('[data-a],[data-go]');if(!b)return;if(b.dataset.go){if(b.dataset.stp)stp=+b.dataset.stp;if(b.dataset.pg)pg=+b.dataset.pg;go(b.dataset.go);return}
 const ok=A[b.dataset.a](b);if(ok&&b.dataset.nx){stp=+b.dataset.nx;go('steps')}});
 render();if(TTS)loadVoices();if(sb)authInit();addEventListener('pageshow',e=>{if(e.persisted&&au.busy){au.busy=false;render(true)}});
-</script></body></html>
+</script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .catch(error => console.error('Service Worker:', error));
+  });
+}
+</script>
+
+</body>
+
