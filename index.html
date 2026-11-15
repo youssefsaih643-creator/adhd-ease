@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="theme-color" content="#A78BFA">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"> 
-<link rel="manifest" href="./manifest.webmanifest">
+<meta name="application-name" content="ADHD Ease">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ADHD Ease">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="apple-touch-icon" sizes="192x192" href="./icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512.png">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"> 
+<link rel="manifest" href="./manifest.webmanifest">
 <title>ADHD Ease — Your ADHD Productivity System</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23A78BFA'/%3E%3Cpath d='M31 14c-7-7-17-1-16 8-7 4-5 15 2 17-1 8 8 13 15 8 7 5 16 0 15-8 7-2 9-13 2-17 1-9-9-15-16-8-1-3-1-3-2 0Z' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M32 15v34M22 22c6 0 8 5 8 10m12-10c-6 0-8 5-8 10M20 39c5-1 8 2 10 6m14-6c-5-1-8 2-10 6' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{--p:#A78BFA;--pd:#6D4FD6;--pale:#F4F0FF;--pale2:#ECE5FD;--tx:#1F1F29;--mu:#6F6978;--bd:#ECE8F3;--bg:#FAFAFA;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--sh:0 1px 2px rgba(109,79,214,.05),0 10px 28px rgba(109,79,214,.08)}
 *{box-sizing:border-box}html,body{margin:0}
@@ -36,7 +41,6 @@ main{padding:34px 48px 80px;max-width:1120px;width:100%}
 .top{margin-bottom:26px}.top h1{color:var(--tx)}.top p{color:var(--mu);font-size:18px;margin:6px 0 0}
 .btn{border:0;background:linear-gradient(180deg,#B3A0FC,#A084F6);color:var(--tx);padding:11px 24px;border-radius:999px;font:600 14px 'Cormorant Garamond',serif;letter-spacing:.02em;box-shadow:0 6px 16px rgba(167,139,250,.35);transition:transform .15s,box-shadow .15s}
 .btn:hover{transform:translateY(-1px);box-shadow:0 9px 20px rgba(167,139,250,.45)}.btn.o,.btn.gb{background:#fff;border:1.5px solid var(--p);box-shadow:none;color:var(--tx)}.btn.o:hover,.btn.gb:hover{background:var(--pale)}.btn.sm{padding:7px 15px;font-size:13px}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
-.btn.install-btn{background:#218653;color:#fff;box-shadow:0 6px 16px rgba(33,134,83,.22);font-family:Inter,sans-serif;font-weight:600}.btn.install-btn:hover{background:#176B41;box-shadow:0 9px 20px rgba(33,134,83,.28)}.btn.install-btn span{font-size:18px;margin-right:7px}
 .card{background:#fff;border:1px solid var(--bd);border-radius:22px;padding:28px;box-shadow:var(--sh)}.pale{background:linear-gradient(160deg,#F7F3FF,#F1EBFF);border-color:#E6DEFB}
 .g{display:grid;gap:22px}.g2{grid-template-columns:1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g21{grid-template-columns:1.25fr 1fr}
 .mu{color:var(--mu)}.tag{display:inline-block;background:#fff;border:1px solid #D9CCFA;color:var(--pd);border-radius:99px;padding:0 13px;font-size:16px;font-weight:700}
@@ -243,14 +247,21 @@ html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;color:var(--tx);
 @media(max-width:600px){body{font-size:14px}.top{margin-bottom:17px}.top h1{font-size:27px}.top p{font-size:14px}.g2,.g21,.g3{grid-template-columns:minmax(0,1fr)}.g4{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{padding:16px;border-radius:17px}.hero{padding:17px;gap:15px}.hero h2{font-size:27px}.hero p{font-size:15px}.hero-photo{min-height:185px}.section-photo.slim,.section-photo.slim img{height:112px}.st{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.st button{min-width:0;padding:10px 8px;font-size:12px}.pg{gap:6px}.pg button{font-size:12px;padding:7px 11px}.row{gap:8px}.row .btn{flex:0 1 auto}.tr{grid-template-columns:27px minmax(0,1fr);gap:7px 10px;padding:14px 12px;margin:9px 0}.tr>b{width:25px;height:25px;font-size:12px}.tr h4{font-size:14px}.tr p{font-size:14px;line-height:1.7}.cover{width:100%;height:150px}.cv{align-items:stretch!important;gap:15px!important}.cv>div:last-child{width:100%;min-width:0}.cv .row{display:flex;flex-wrap:wrap}.cv .row .btn{min-height:42px}.cv .g2{grid-template-columns:1fr}.tabs{left:8px;right:8px;bottom:8px;border-radius:16px}.tabs button{min-width:0;padding:8px 3px;font-size:9px}.stat{padding:12px}.stat b{font-size:23px}}
 @media(max-width:360px){main{padding-left:12px;padding-right:12px}.g4{gap:8px}.card{padding:13px}.tr{grid-template-columns:23px minmax(0,1fr);padding:12px 10px}.tr p{font-size:13px}}
 
+
+/* PWA install entry points */
+.app-install-link{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 15px;border:1px solid #D9CCFA;border-radius:999px;background:#fff;color:#6D4FD6;text-decoration:none;font:600 14px 'Inter',sans-serif}
+.app-install-link:hover{background:#F4F0FF}
+.side>.app-install-link{margin-top:2px;margin-left:8px;margin-right:8px}
+.mobile-install{margin-left:auto;min-height:36px;padding:6px 13px;font-size:13px}
+@media(max-width:820px){.mh{display:flex}.mh .mobile-install{display:inline-flex}}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute"><defs>
 <symbol id="home" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></symbol><symbol id="steps" viewBox="0 0 24 24"><path d="M4 19h5v-5h5V9h6"/></symbol>
 <symbol id="planner" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></symbol><symbol id="audio" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2M4 14h3v5H4zM17 14h3v5h-3z"/></symbol>
 <symbol id="guide" viewBox="0 0 24 24"><path d="M5 4h10a4 4 0 014 4v12H9a4 4 0 01-4-4zM5 16a4 4 0 014-4h10"/></symbol><symbol id="progress" viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></symbol>
 <symbol id="account" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol><symbol id="brain" viewBox="0 0 24 24"><path d="M12 4.2c-1.3-2-4.3-1.8-5.2.4-2.3-.2-4 2-3.1 4.1-1.8 1.6-1.3 4.6.8 5.5-.4 2.5 1.9 4.6 4.2 3.7.8 1.8 3.1 2.2 4.3.8 1.2 1.4 3.5 1 4.3-.8 2.3.9 4.6-1.2 4.2-3.7 2.1-.9 2.6-3.9.8-5.5.9-2.1-.8-4.3-3.1-4.1-.9-2.2-3.9-2.4-5.2-.4Z"/><path d="M12 4.2v14.6M8 7.2c1.8.3 2.7 1.5 2.7 3.1M16 7.2c-1.8.3-2.7 1.5-2.7 3.1M7.2 13.2c1.6-.1 2.6.7 3 2M16.8 13.2c-1.6-.1-2.6.7-3 2" fill="none" stroke="white" stroke-width="1.25" stroke-linecap="round"/></symbol><symbol id="leaf" viewBox="0 0 24 24"><path d="M11.8 21C4.7 17.2 3.2 10.4 5.1 4.2c5.7 2.1 8.6 7.3 6.7 16.8Z"/><path d="M12.2 21c.2-7.2 3.3-13 8.1-16.2 1.8 6.8-1.3 12.9-8.1 16.2Z"/><path d="M12 21V10" fill="none" stroke="white" stroke-width="1.1"/></symbol><symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol><symbol id="flame" viewBox="0 0 24 24"><path d="M12 3c.6 3.6 5 5.2 5 10a5 5 0 01-10 0c0-2.6 1.6-3.8 2.6-5.6.9.9 1.4 1.6 1.9 2.6.6-2.2.5-4.4.5-7z"/></symbol><symbol id="target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol><symbol id="spark" viewBox="0 0 24 24"><path d="M12 3l2 6 6 3-6 3-2 6-2-6-6-3 6-3z"/></symbol><symbol id="bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.4c.9.8 1 1.6 1 2.6h6c0-1 .1-1.800 1-2.600A6 6 0 0012 3z"/></symbol></defs></svg>
-<div class="app"><aside class="side"><div class="brand"><span class="mk"><svg class="lf" aria-hidden="true"><use href="#brain"/></svg></span><div>ADHD Ease<small>Your ADHD productivity system</small></div></div><nav class="nav" id="nav" aria-label="Main"></nav><div class="me"></div><div class="sf" id="sf">Your data is saved in this browser. Billing is not connected.</div></aside>
-<div><div class="mh"><span class="mk"><svg class="lf" aria-hidden="true"><use href="#brain"/></svg></span>ADHD Ease<span class="me"></span></div><main id="main"></main></div></div>
+<div class="app"><aside class="side"><div class="brand"><span class="mk"><svg class="lf" aria-hidden="true"><use href="#brain"/></svg></span><div>ADHD Ease<small>Your ADHD productivity system</small></div></div><nav class="nav" id="nav" aria-label="Main"></nav><a class="app-install-link" href="./install.html" aria-label="Install ADHD Ease app">Install app</a><div class="me"></div><div class="sf" id="sf">Your data is saved in this browser. Billing is not connected.</div></aside>
+<div><div class="mh"><span class="mk"><svg class="lf" aria-hidden="true"><use href="#brain"/></svg></span>ADHD Ease<span class="me"></span><a class="app-install-link mobile-install" href="./install.html">Install</a></div><main id="main"></main></div></div>
 <nav class="tabs" id="tabs" aria-label="Mobile"></nav><div id="toast" role="status"></div>
 <script src="supabase.js"></script>
 <script>
@@ -369,7 +380,7 @@ const focus=t?`<h3 style="font-size:18px;margin:4px 0">${esc(t.title)}</h3><p cl
 :`<p>Pick one task you have been putting off. It can be small, like replying to an email.</p><ol class="mu" style="padding-left:22px;margin:0 0 14px"><li>Describe it in one sentence (Step 1).</li><li>Choose it as your one priority (Step 2).</li><li>Break it into small actions (Step 3).</li><li>Choose your first action and begin (Step 4).</li></ol><div class="row"><button class="btn" data-a="new">Start a New Task</button><button class="btn o" data-go="audio">Listen to the guided start</button></div><details style="margin-top:14px"><summary class="mu">See a demonstration example (not your data)</summary><div class="eg"><b>Example only</b><br>Task: Organize the kitchen counter.<br>First action: remove unnecessary items.<br>Then: put dishes in the sink, wipe the counter, return essential items, check the finished area.</div></details>`;
 const plan=t&&t.actions.length?`${t.actions.slice(0,6).map(a=>`<div class="act ${a.done?'d':''}"><button class="ck ${a.done?'on':''}" data-a="tog" data-i="${a.id}" aria-label="Toggle done">${a.done?'✓':''}</button><span style="flex:1;padding:4px 6px;${a.done?'text-decoration:line-through;color:var(--mu)':''}">${esc(a.t)}${a.id===t.first?' <span class="tag">First action</span>':''}</span></div>`).join('')}<div class="row" style="margin-top:12px"><button class="btn o sm" data-go="planner" data-pg="5">Open Daily Action Plan</button></div>`:empty(t?'This task has no actions yet.':'Your daily plan will appear here once you have a task.',t?`<button class="btn sm" data-go="steps" data-stp="3">Break it down</button>`:newBtn);
 return `<header class="top"><h1>${hi()}${nm?', '+esc(nm):''}</h1><p class="scr">Small steps create big momentum.</p></header>
-<section class="hero" aria-labelledby="hh"><div><h2 id="hh">Stay focused, feel calmer, get things done.</h2><p>Clarify one task, choose one priority, shrink it into small actions, and begin with one. An educational, coaching-inspired tool, not a medical treatment.</p><div class="row"><button class="btn install-btn" data-a="install" type="button"><span aria-hidden="true">↓</span> Install ADHD Ease</button></div></div><div class="hero-photo" aria-label="A calm workspace with a notebook and coffee"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Bright, calm workspace with desk and natural light"><div class="hero-photo-caption"><span>YOUR DAILY RESET</span><strong>One step at a time.</strong><small>A little clarity for the day ahead.</small></div></div></section>
+<section class="hero" aria-labelledby="hh"><div><h2 id="hh">Stay focused, feel calmer, get things done.</h2><p>Clarify one task, choose one priority, shrink it into small actions, and begin with one. An educational, coaching-inspired tool, not a medical treatment.</p><div class="row"><button class="btn" data-a="new">Start a New Task</button><button class="btn o" data-go="audio">Listen to the guided start</button></div></div><div class="hero-photo" aria-label="A calm workspace with a notebook and coffee"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Bright, calm workspace with desk and natural light"><div class="hero-photo-caption"><span>YOUR DAILY RESET</span><strong>One step at a time.</strong><small>A little clarity for the day ahead.</small></div></div></section>
 ${!au.user&&au.st==='ready'?`<div class="nudge"><p><b>Sync across devices.</b> <span class="mu">Sign in with Google to save your planner to your account. Your data stays on this device either way.</span></p><button class="btn gb" data-a="signin" style="display:inline-flex;gap:10px;align-items:center" ${au.busy?'disabled':''}>${GICO} Continue with Google</button></div>`:''}
 <section class="g g4" style="margin-top:22px" aria-label="Overview">${kp('target','Open tasks',open.length,ip+' in progress')}${kp('check','Actions done',ac+' of '+ta,pc(ac,ta)+'% complete')}${kp('spark','Tasks completed',tc,'of '+T.length+' created')}${kp('flame','Active streak',sk+(sk===1?' day':' days'),wk+' of 7 days active this week')}</section>
 <div class="g g21" style="margin-top:22px"><section class="card pale" aria-labelledby="cf"><div class="h3l">${ico('target')}<h2 id="cf" style="font-size:18px">${t?"Today's Focus":'Begin here'}</h2></div>${focus}</section>
@@ -475,16 +486,7 @@ document.addEventListener('toggle',e=>{if(e.target.id==='tdet')tOpen=e.target.op
 const sv=m=>{persist();toast(m||'Saved on this device');render(true);return true};
 function impText(tx){let o;try{o=JSON.parse(tx)}catch(e){return toast('That is not valid backup data.')}if(!o||!Array.isArray(o.tasks))return toast('That file is not an ADHD Ease backup.');S=clean(o);draft={};persist();log('Imported data');persist();toast('Imported '+S.tasks.length+' task'+(S.tasks.length===1?'':'s'));render()}
 const tuv=()=>{const d=$('#tmd'),b=$('#tmb'),m=$('#tmm');if(d)d.textContent=fmt(tl||tmin*60);if(b)b.textContent=tint?'Pause':'Start timer';if(m)m.textContent=tdone?'Time is up. Stop here, or keep going if you want. Your choice.':'Use it only if it helps.'};
-let deferredInstallPrompt=null;
-window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstallPrompt=event;const installButton=document.querySelector('[data-a="install"]');if(installButton){installButton.disabled=false;installButton.setAttribute('aria-label','Install ADHD Ease')} });
-window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;toast('ADHD Ease has been installed.')});
 const A={
-install:async function(){
- if(window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone){toast('ADHD Ease is already installed.');return}
- if(!deferredInstallPrompt){toast('The browser has not made the install option available yet. Please try again after the app meets Chrome install requirements.');return}
- const promptEvent=deferredInstallPrompt;deferredInstallPrompt=null;
- try{await promptEvent.prompt();const choice=await promptEvent.userChoice;if(choice&&choice.outcome==='accepted')toast('Installing ADHD Ease...');else toast('Installation was not completed.')}catch(error){console.error('Install prompt:',error);toast('Could not open the install prompt. Please try again.')}
-},
 async signin(){if(!sb||au.busy)return;au.busy=true;au.err='';render(true);try{const r=await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname,queryParams:{prompt:'select_account'}}});if(r.error)throw r.error}catch(e){au.busy=false;au.err='Could not start Google sign-in. '+aMsg(e);render(true)}},
 async signout(){if(!sb||au.busy)return;au.busy=true;au.err='';render(true);try{if(cl.ready&&cl.tm)await cloudFlush();const r=await sb.auth.signOut({scope:'local'});if(r.error)throw r.error;au.user=null;toast('Signed out. Your planner data on this device was not changed.')}catch(e){au.err='Could not sign out. '+aMsg(e)}au.busy=false;render(true)},
 syncretry(){if(cl.uid&&cl.ready){cl.fails=0;cloudFlush()}else if(au.user)cloudLoad(au.user.id)},
@@ -520,13 +522,15 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-a],[data-g
 const ok=A[b.dataset.a](b);if(ok&&b.dataset.nx){stp=+b.dataset.nx;go('steps')}});
 render();if(TTS)loadVoices();if(sb)authInit();addEventListener('pageshow',e=>{if(e.persisted&&au.busy){au.busy=false;render(true)}});
 </script>
-<script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js', { scope: './' })
-          .catch(error => console.error('Service Worker:', error));
-      });
-    }
-</script>
-</body></html>
 
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .catch(error => console.error('Service Worker:', error));
+  });
+}
+</script>
+
+</body>
+</html>

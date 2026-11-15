@@ -33,7 +33,11 @@
     .install:disabled{opacity:.65;cursor:default}
     .open{display:inline-block;margin:17px 0 0;color:var(--lav-dark);font-size:14px;text-decoration:underline;text-underline-offset:4px}
     .status{margin:20px auto 0;padding:14px 16px;border-radius:15px;background:#F7F4FC;border:1px solid var(--line);color:#514A60;font-size:13px;line-height:1.6;text-align:left;max-width:540px}
-    .status[hidden]{display:none}
+    .status[hidden],.steps[hidden]{display:none}
+    .steps{margin:22px auto 0;max-width:540px;text-align:left;background:#FBFAFD;border:1px solid var(--line);border-radius:18px;padding:18px 20px}
+    .steps h2{font:600 22px 'Cormorant Garamond',Georgia,serif;margin:0 0 10px}
+    .steps ol{padding-left:21px;margin:0;color:#5F5969;font-size:14px;line-height:1.8}
+    .steps li+li{margin-top:5px}
     footer{text-align:center;color:#928B9B;font-size:12px;margin-top:23px}
     @media(max-width:480px){.wrap{width:min(100% - 24px,760px);padding-top:22px}.panel{border-radius:23px;padding:27px 19px}.brand{font-size:27px}.app-icon{width:100px;height:100px}}
   </style>
@@ -51,37 +55,109 @@
       <img class="app-icon" src="./icons/icon-512.png" alt="ADHD Ease app icon">
       <p class="desc">Install ADHD Ease on your phone for quick access to your planner, 5-Step System, guided audio and progress tools — all in one place.</p>
       <button class="install" id="installBtn" type="button">Install ADHD Ease</button>
+      <div><a class="open" href="./index.html">Already installed? Open ADHD Ease</a></div>
       <div class="status" id="status" role="status" aria-live="polite" hidden></div>
-      </section>
+      <div class="steps" id="steps" hidden>
+        <h2 id="stepsTitle">Install from your browser</h2>
+        <ol id="stepsList"></ol>
+      </div>
+    </section>
     <footer>ADHD Ease · Small steps create big momentum.</footer>
   </main>
 <script>
 (() => {
   const btn = document.getElementById('installBtn');
   const status = document.getElementById('status');
+  const steps = document.getElementById('steps');
+  const stepsTitle = document.getElementById('stepsTitle');
+  const stepsList = document.getElementById('stepsList');
   let installEvent = null;
-  const standalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-  const show = message => { status.hidden = false; status.textContent = message; };
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(() => {}));
+
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true;
+
+  function showSteps(title, items, message) {
+    status.hidden = false;
+    status.textContent = message;
+    stepsTitle.textContent = title;
+    stepsList.replaceChildren(...items.map(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      return li;
+    }));
+    steps.hidden = false;
   }
+
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    });
+  }
+
   window.addEventListener('beforeinstallprompt', event => {
-    event.preventDefault(); installEvent = event; btn.disabled = false; btn.textContent = 'Install ADHD Ease'; status.hidden = true;
+    event.preventDefault();
+    installEvent = event;
+    btn.disabled = false;
+    btn.textContent = 'Install ADHD Ease';
+    status.hidden = true;
+    steps.hidden = true;
   });
+
   window.addEventListener('appinstalled', () => {
-    installEvent = null; btn.disabled = true; btn.textContent = 'ADHD Ease is installed'; show('ADHD Ease has been installed successfully.');
+    installEvent = null;
+    btn.disabled = true;
+    btn.textContent = 'ADHD Ease is installed';
+    showSteps('You’re all set', ['Open ADHD Ease from your phone’s home screen.'], 'ADHD Ease has been installed successfully.');
   });
-  if (standalone()) { btn.disabled = true; btn.textContent = 'ADHD Ease is installed'; show('ADHD Ease is already installed on this device.'); }
+
+  if (isStandalone) {
+    btn.disabled = true;
+    btn.textContent = 'ADHD Ease is installed';
+    status.hidden = false;
+    status.textContent = 'ADHD Ease is already installed on this device.';
+  } else if (isIOS) {
+    showSteps('Install on iPhone or iPad', [
+      'Open this page in Safari.',
+      'Tap the Share button.',
+      'Choose “Add to Home Screen”.',
+      'Tap “Add” to finish.'
+    ], 'On iPhone and iPad, installation is completed from Safari’s Share menu.');
+  }
+
   btn.addEventListener('click', async () => {
-    if (standalone()) return;
-    if (!installEvent) { show('The browser has not made its installation window available yet.'); return; }
-    const promptEvent = installEvent; installEvent = null;
-    try {
-      await promptEvent.prompt();
-      const choice = await promptEvent.userChoice;
-      if (choice && choice.outcome === 'accepted') { btn.disabled = true; btn.textContent = 'Installing ADHD Ease…'; show('Confirm the installation on your device.'); }
-      else show('Installation was not completed. You can try again when the browser offers the install option.');
-    } catch { show('The browser could not open the installation window this time.'); }
+    if (isStandalone) return;
+    if (installEvent) {
+      installEvent.prompt();
+      const choice = await installEvent.userChoice;
+      if (choice && choice.outcome === 'accepted') {
+        btn.textContent = 'Installing ADHD Ease…';
+        status.hidden = false;
+        status.textContent = 'Follow the confirmation on your device to finish installation.';
+      } else {
+        status.hidden = false;
+        status.textContent = 'No problem. You can install ADHD Ease whenever you’re ready.';
+      }
+      installEvent = null;
+      return;
+    }
+
+    if (isIOS) {
+      showSteps('Install on iPhone or iPad', [
+        'Open this page in Safari.',
+        'Tap the Share button.',
+        'Choose “Add to Home Screen”.',
+        'Tap “Add” to finish.'
+      ], 'Use Safari’s Share menu to add ADHD Ease to your Home Screen.');
+    } else {
+      showSteps('Install from Android browser', [
+        'Open this page in Google Chrome.',
+        'Tap the three-dot menu in the top-right corner.',
+        'Choose “Install app” or “Add to Home screen” if shown.',
+        'Confirm the installation.'
+      ], 'Your browser has not offered its automatic install prompt yet. Use the browser menu if the install option is available.');
+    }
   });
 })();
 </script>

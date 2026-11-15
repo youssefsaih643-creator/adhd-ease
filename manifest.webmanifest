@@ -3,7 +3,7 @@
   "name": "ADHD Ease — Everyday ADHD Support",
   "short_name": "ADHD Ease",
   "description": "A practical everyday system for planning, starting tasks, and tracking progress.",
-  "start_url": "./?source=pwa",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
