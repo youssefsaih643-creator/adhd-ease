@@ -1,4 +1,4 @@
-const CACHE_NAME = 'adhd-ease-shell-v3';
+const CACHE_NAME = 'adhd-ease-shell-v4';
 const APP_BASE = new URL(self.registration.scope);
 const appUrl = (path = '') => new URL(path, APP_BASE).toString();
 
