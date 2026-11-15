@@ -1,0 +1,20 @@
+{
+  "name": "adhd-ease",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ADHD Ease mobile app wrapper and PWA",
+  "scripts": {
+    "build": "node scripts/copy-web.mjs",
+    "cap:sync": "npm run build && cap sync",
+    "cap:android": "npm run build && cap sync android && cap open android",
+    "cap:ios": "npm run build && cap sync ios && cap open ios"
+  },
+  "dependencies": {
+    "@capacitor/core": "^8.6.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^8.6.2",
+    "@capacitor/android": "^8.6.2",
+    "@capacitor/ios": "^8.6.2"
+  }
+}

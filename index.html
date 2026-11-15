@@ -2,7 +2,9 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="theme-color" content="#A78BFA">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"> 
-<link rel="manifest" href="/manifest.webmanifest">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="192x192" href="./icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png">
 <title>ADHD Ease — Your ADHD Productivity System</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23A78BFA'/%3E%3Cpath d='M31 14c-7-7-17-1-16 8-7 4-5 15 2 17-1 8 8 13 15 8 7 5 16 0 15-8 7-2 9-13 2-17 1-9-9-15-16-8-1-3-1-3-2 0Z' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M32 15v34M22 22c6 0 8 5 8 10m12-10c-6 0-8 5-8 10M20 39c5-1 8 2 10 6m14-6c-5-1-8 2-10 6' fill='none' stroke='white' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,6 +36,7 @@ main{padding:34px 48px 80px;max-width:1120px;width:100%}
 .top{margin-bottom:26px}.top h1{color:var(--tx)}.top p{color:var(--mu);font-size:18px;margin:6px 0 0}
 .btn{border:0;background:linear-gradient(180deg,#B3A0FC,#A084F6);color:var(--tx);padding:11px 24px;border-radius:999px;font:600 14px 'Cormorant Garamond',serif;letter-spacing:.02em;box-shadow:0 6px 16px rgba(167,139,250,.35);transition:transform .15s,box-shadow .15s}
 .btn:hover{transform:translateY(-1px);box-shadow:0 9px 20px rgba(167,139,250,.45)}.btn.o,.btn.gb{background:#fff;border:1.5px solid var(--p);box-shadow:none;color:var(--tx)}.btn.o:hover,.btn.gb:hover{background:var(--pale)}.btn.sm{padding:7px 15px;font-size:13px}.btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+.btn.install-btn{background:#218653;color:#fff;box-shadow:0 6px 16px rgba(33,134,83,.22);font-family:Inter,sans-serif;font-weight:600}.btn.install-btn:hover{background:#176B41;box-shadow:0 9px 20px rgba(33,134,83,.28)}.btn.install-btn span{font-size:18px;margin-right:7px}
 .card{background:#fff;border:1px solid var(--bd);border-radius:22px;padding:28px;box-shadow:var(--sh)}.pale{background:linear-gradient(160deg,#F7F3FF,#F1EBFF);border-color:#E6DEFB}
 .g{display:grid;gap:22px}.g2{grid-template-columns:1fr 1fr}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g21{grid-template-columns:1.25fr 1fr}
 .mu{color:var(--mu)}.tag{display:inline-block;background:#fff;border:1px solid #D9CCFA;color:var(--pd);border-radius:99px;padding:0 13px;font-size:16px;font-weight:700}
@@ -366,7 +369,7 @@ const focus=t?`<h3 style="font-size:18px;margin:4px 0">${esc(t.title)}</h3><p cl
 :`<p>Pick one task you have been putting off. It can be small, like replying to an email.</p><ol class="mu" style="padding-left:22px;margin:0 0 14px"><li>Describe it in one sentence (Step 1).</li><li>Choose it as your one priority (Step 2).</li><li>Break it into small actions (Step 3).</li><li>Choose your first action and begin (Step 4).</li></ol><div class="row"><button class="btn" data-a="new">Start a New Task</button><button class="btn o" data-go="audio">Listen to the guided start</button></div><details style="margin-top:14px"><summary class="mu">See a demonstration example (not your data)</summary><div class="eg"><b>Example only</b><br>Task: Organize the kitchen counter.<br>First action: remove unnecessary items.<br>Then: put dishes in the sink, wipe the counter, return essential items, check the finished area.</div></details>`;
 const plan=t&&t.actions.length?`${t.actions.slice(0,6).map(a=>`<div class="act ${a.done?'d':''}"><button class="ck ${a.done?'on':''}" data-a="tog" data-i="${a.id}" aria-label="Toggle done">${a.done?'✓':''}</button><span style="flex:1;padding:4px 6px;${a.done?'text-decoration:line-through;color:var(--mu)':''}">${esc(a.t)}${a.id===t.first?' <span class="tag">First action</span>':''}</span></div>`).join('')}<div class="row" style="margin-top:12px"><button class="btn o sm" data-go="planner" data-pg="5">Open Daily Action Plan</button></div>`:empty(t?'This task has no actions yet.':'Your daily plan will appear here once you have a task.',t?`<button class="btn sm" data-go="steps" data-stp="3">Break it down</button>`:newBtn);
 return `<header class="top"><h1>${hi()}${nm?', '+esc(nm):''}</h1><p class="scr">Small steps create big momentum.</p></header>
-<section class="hero" aria-labelledby="hh"><div><h2 id="hh">Stay focused, feel calmer, get things done.</h2><p>Clarify one task, choose one priority, shrink it into small actions, and begin with one. An educational, coaching-inspired tool, not a medical treatment.</p><div class="row"><button class="btn" data-a="new">Start a New Task</button><button class="btn o" data-go="audio">Listen to the guided start</button></div></div><div class="hero-photo" aria-label="A calm workspace with a notebook and coffee"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Bright, calm workspace with desk and natural light"><div class="hero-photo-caption"><span>YOUR DAILY RESET</span><strong>One step at a time.</strong><small>A little clarity for the day ahead.</small></div></div></section>
+<section class="hero" aria-labelledby="hh"><div><h2 id="hh">Stay focused, feel calmer, get things done.</h2><p>Clarify one task, choose one priority, shrink it into small actions, and begin with one. An educational, coaching-inspired tool, not a medical treatment.</p><div class="row"><button class="btn install-btn" data-a="install" type="button"><span aria-hidden="true">↓</span> Install ADHD Ease</button></div></div><div class="hero-photo" aria-label="A calm workspace with a notebook and coffee"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=85" alt="Bright, calm workspace with desk and natural light"><div class="hero-photo-caption"><span>YOUR DAILY RESET</span><strong>One step at a time.</strong><small>A little clarity for the day ahead.</small></div></div></section>
 ${!au.user&&au.st==='ready'?`<div class="nudge"><p><b>Sync across devices.</b> <span class="mu">Sign in with Google to save your planner to your account. Your data stays on this device either way.</span></p><button class="btn gb" data-a="signin" style="display:inline-flex;gap:10px;align-items:center" ${au.busy?'disabled':''}>${GICO} Continue with Google</button></div>`:''}
 <section class="g g4" style="margin-top:22px" aria-label="Overview">${kp('target','Open tasks',open.length,ip+' in progress')}${kp('check','Actions done',ac+' of '+ta,pc(ac,ta)+'% complete')}${kp('spark','Tasks completed',tc,'of '+T.length+' created')}${kp('flame','Active streak',sk+(sk===1?' day':' days'),wk+' of 7 days active this week')}</section>
 <div class="g g21" style="margin-top:22px"><section class="card pale" aria-labelledby="cf"><div class="h3l">${ico('target')}<h2 id="cf" style="font-size:18px">${t?"Today's Focus":'Begin here'}</h2></div>${focus}</section>
@@ -472,7 +475,16 @@ document.addEventListener('toggle',e=>{if(e.target.id==='tdet')tOpen=e.target.op
 const sv=m=>{persist();toast(m||'Saved on this device');render(true);return true};
 function impText(tx){let o;try{o=JSON.parse(tx)}catch(e){return toast('That is not valid backup data.')}if(!o||!Array.isArray(o.tasks))return toast('That file is not an ADHD Ease backup.');S=clean(o);draft={};persist();log('Imported data');persist();toast('Imported '+S.tasks.length+' task'+(S.tasks.length===1?'':'s'));render()}
 const tuv=()=>{const d=$('#tmd'),b=$('#tmb'),m=$('#tmm');if(d)d.textContent=fmt(tl||tmin*60);if(b)b.textContent=tint?'Pause':'Start timer';if(m)m.textContent=tdone?'Time is up. Stop here, or keep going if you want. Your choice.':'Use it only if it helps.'};
+let deferredInstallPrompt=null;
+window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstallPrompt=event;const installButton=document.querySelector('[data-a="install"]');if(installButton){installButton.disabled=false;installButton.setAttribute('aria-label','Install ADHD Ease')} });
+window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;toast('ADHD Ease has been installed.')});
 const A={
+install:async function(){
+ if(window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone){toast('ADHD Ease is already installed.');return}
+ if(!deferredInstallPrompt){toast('The browser has not made the install option available yet. Please try again after the app meets Chrome install requirements.');return}
+ const promptEvent=deferredInstallPrompt;deferredInstallPrompt=null;
+ try{await promptEvent.prompt();const choice=await promptEvent.userChoice;if(choice&&choice.outcome==='accepted')toast('Installing ADHD Ease...');else toast('Installation was not completed.')}catch(error){console.error('Install prompt:',error);toast('Could not open the install prompt. Please try again.')}
+},
 async signin(){if(!sb||au.busy)return;au.busy=true;au.err='';render(true);try{const r=await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname,queryParams:{prompt:'select_account'}}});if(r.error)throw r.error}catch(e){au.busy=false;au.err='Could not start Google sign-in. '+aMsg(e);render(true)}},
 async signout(){if(!sb||au.busy)return;au.busy=true;au.err='';render(true);try{if(cl.ready&&cl.tm)await cloudFlush();const r=await sb.auth.signOut({scope:'local'});if(r.error)throw r.error;au.user=null;toast('Signed out. Your planner data on this device was not changed.')}catch(e){au.err='Could not sign out. '+aMsg(e)}au.busy=false;render(true)},
 syncretry(){if(cl.uid&&cl.ready){cl.fails=0;cloudFlush()}else if(au.user)cloudLoad(au.user.id)},
@@ -508,15 +520,13 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-a],[data-g
 const ok=A[b.dataset.a](b);if(ok&&b.dataset.nx){stp=+b.dataset.nx;go('steps')}});
 render();if(TTS)loadVoices();if(sb)authInit();addEventListener('pageshow',e=>{if(e.persisted&&au.busy){au.busy=false;render(true)}});
 </script>
-
 <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/sw.js')
-      .catch(error => console.error('Service Worker:', error));
-  });
-}
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js', { scope: './' })
+          .catch(error => console.error('Service Worker:', error));
+      });
+    }
 </script>
-
-</body>
+</body></html>
 
