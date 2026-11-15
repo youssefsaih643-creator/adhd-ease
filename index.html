@@ -249,8 +249,10 @@ html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;color:var(--tx);
 
 
 /* PWA install entry points */
-.app-install-link{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 15px;border:1px solid #D9CCFA;border-radius:999px;background:#fff;color:#6D4FD6;text-decoration:none;font:600 14px 'Inter',sans-serif}
-.app-install-link:hover{background:#F4F0FF}
+.app-install-link{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:9px 17px;border:0;border-radius:999px;background:#A3B18A;color:#182018;text-decoration:none;font:700 14px 'Inter',sans-serif;box-shadow:0 6px 16px #A3B18A55;cursor:pointer}
+.app-install-link:hover{background:#91A276}
+.app-install-link:disabled{opacity:.65;cursor:default}
+.install-feedback{display:none;margin:8px 10px 0;color:#716B7B;font:12px/1.5 'Inter',sans-serif}.install-feedback.show{display:block}
 .side>.app-install-link{margin-top:2px;margin-left:8px;margin-right:8px}
 .mobile-install{margin-left:auto;min-height:36px;padding:6px 13px;font-size:13px}
 @media(max-width:820px){.mh{display:flex}.mh .mobile-install{display:inline-flex}}
@@ -260,9 +262,9 @@ html{scroll-behavior:smooth}body{font-family:'Inter',sans-serif;color:var(--tx);
 <symbol id="planner" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M8 3v4M16 3v4M4 10h16"/></symbol><symbol id="audio" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0116 0v2M4 14h3v5H4zM17 14h3v5h-3z"/></symbol>
 <symbol id="guide" viewBox="0 0 24 24"><path d="M5 4h10a4 4 0 014 4v12H9a4 4 0 01-4-4zM5 16a4 4 0 014-4h10"/></symbol><symbol id="progress" viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-7"/></symbol>
 <symbol id="account" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></symbol><symbol id="brain" viewBox="0 0 24 24"><path d="M12 4.2c-1.3-2-4.3-1.8-5.2.4-2.3-.2-4 2-3.1 4.1-1.8 1.6-1.3 4.6.8 5.5-.4 2.5 1.9 4.6 4.2 3.7.8 1.8 3.1 2.2 4.3.8 1.2 1.4 3.5 1 4.3-.8 2.3.9 4.6-1.2 4.2-3.7 2.1-.9 2.6-3.9.8-5.5.9-2.1-.8-4.3-3.1-4.1-.9-2.2-3.9-2.4-5.2-.4Z"/><path d="M12 4.2v14.6M8 7.2c1.8.3 2.7 1.5 2.7 3.1M16 7.2c-1.8.3-2.7 1.5-2.7 3.1M7.2 13.2c1.6-.1 2.6.7 3 2M16.8 13.2c-1.6-.1-2.6.7-3 2" fill="none" stroke="white" stroke-width="1.25" stroke-linecap="round"/></symbol><symbol id="leaf" viewBox="0 0 24 24"><path d="M11.8 21C4.7 17.2 3.2 10.4 5.1 4.2c5.7 2.1 8.6 7.3 6.7 16.8Z"/><path d="M12.2 21c.2-7.2 3.3-13 8.1-16.2 1.8 6.8-1.3 12.9-8.1 16.2Z"/><path d="M12 21V10" fill="none" stroke="white" stroke-width="1.1"/></symbol><symbol id="check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></symbol><symbol id="flame" viewBox="0 0 24 24"><path d="M12 3c.6 3.6 5 5.2 5 10a5 5 0 01-10 0c0-2.6 1.6-3.8 2.6-5.6.9.9 1.4 1.6 1.9 2.6.6-2.2.5-4.4.5-7z"/></symbol><symbol id="target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol><symbol id="spark" viewBox="0 0 24 24"><path d="M12 3l2 6 6 3-6 3-2 6-2-6-6-3 6-3z"/></symbol><symbol id="bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 00-4 10.4c.9.8 1 1.6 1 2.6h6c0-1 .1-1.800 1-2.600A6 6 0 0012 3z"/></symbol></defs></svg>
-<div class="app"><aside class="side"><div class="brand"><span class="mk"><svg class="lf" aria-hidden="true"><use href="#brain"/></svg></span><div>ADHD Ease<small>Your ADHD productivity system</small></div></div><nav class="nav" id="nav" aria-label="Main"></nav><a class="app-install-link" href="./install.html" aria-label="Install ADHD Ease app">Install app</a><div class="me"></div><div class="sf" id="sf">Your data is saved in this browser. Billing is not connected.</div></aside>
-<div><div class="mh"><span class="mk"><svg class="lf" aria-hidden="true"><use href="#brain"/></svg></span>ADHD Ease<span class="me"></span><a class="app-install-link mobile-install" href="./install.html">Install</a></div><main id="main"></main></div></div>
-<nav class="tabs" id="tabs" aria-label="Mobile"></nav><div id="toast" role="status"></div>
+<div class="app"><aside class="side"><div class="brand"><span class="mk"><svg class="lf" aria-hidden="true"><use href="#brain"/></svg></span><div>ADHD Ease<small>Your ADHD productivity system</small></div></div><nav class="nav" id="nav" aria-label="Main"></nav><button class="app-install-link" id="installAppDesktop" type="button" aria-label="Install ADHD Ease app">↓ Install ADHD Ease</button><div class="me"></div><div class="sf" id="sf">Your data is saved in this browser. Billing is not connected.</div></aside>
+<div><div class="mh"><span class="mk"><svg class="lf" aria-hidden="true"><use href="#brain"/></svg></span>ADHD Ease<span class="me"></span><button class="app-install-link mobile-install" id="installAppMobile" type="button">↓ Install</button></div><main id="main"></main></div></div>
+<div class="install-feedback" id="installFeedback" role="status" aria-live="polite"></div><nav class="tabs" id="tabs" aria-label="Mobile"></nav><div id="toast" role="status"></div>
 <script src="supabase.js"></script>
 <script>
 const K='adhdease.v2';let S={tasks:[],cur:null,log:[],name:'',profilePic:''};let draft={},stp=1,pg=1,tl=0,tint=null,tmin=10,tdone=false,tOpen=false,delId=null,wipeAsk=false,storeOK=true,lastSaved=null,recovered=false;
@@ -530,6 +532,42 @@ if ('serviceWorker' in navigator) {
       .catch(error => console.error('Service Worker:', error));
   });
 }
+</script>
+
+<script>
+(() => {
+  let deferredPrompt = null;
+  const buttons = [document.getElementById('installAppDesktop'), document.getElementById('installAppMobile')].filter(Boolean);
+  const feedback = document.getElementById('installFeedback');
+  const standalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const say = (message) => { if (feedback) { feedback.textContent = message; feedback.classList.add('show'); } };
+  const setInstalled = () => { buttons.forEach(button => { button.disabled = true; button.textContent = 'ADHD Ease installed'; }); };
+  if (standalone()) setInstalled();
+  window.addEventListener('beforeinstallprompt', (event) => {
+    event.preventDefault();
+    deferredPrompt = event;
+    buttons.forEach(button => { button.disabled = false; button.textContent = button.id === 'installAppMobile' ? '↓ Install' : '↓ Install ADHD Ease'; });
+    if (feedback) { feedback.textContent = ''; feedback.classList.remove('show'); }
+  });
+  window.addEventListener('appinstalled', () => { deferredPrompt = null; setInstalled(); say('ADHD Ease has been installed. You can open it from your home screen.'); });
+  buttons.forEach(button => button.addEventListener('click', async () => {
+    if (standalone()) { setInstalled(); return; }
+    if (!deferredPrompt) {
+      say('Chrome has not made the install prompt available for this visit. The app files are ready, but Chrome decides when the direct install prompt can appear.');
+      return;
+    }
+    const promptEvent = deferredPrompt;
+    deferredPrompt = null;
+    try {
+      await promptEvent.prompt();
+      const result = await promptEvent.userChoice;
+      if (result && result.outcome === 'accepted') say('Installation accepted. Follow the confirmation shown by your device.');
+      else say('Installation was cancelled. You can try again when Chrome offers the install prompt.');
+    } catch (error) {
+      say('Chrome could not open the install prompt this time.');
+    }
+  }));
+})();
 </script>
 
 </body>
